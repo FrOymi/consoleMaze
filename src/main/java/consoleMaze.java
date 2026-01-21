@@ -11,7 +11,7 @@ class Maze{
 
     public void createMaze() {
         mazeGenerator();
-        String[][] playingBoard = new String[maze.length][maze[0].length];
+        String[][] playingBoard = new String[maze.length + 2][maze[0].length + 2];
         for (int i = 0; i < playingBoard.length; i++) {
             for (int j = 0; j < playingBoard[0].length; j++) {
                 if (i == 0 || i == playingBoard[0].length - 1 || j == 0 || j == playingBoard[0].length - 1) {
