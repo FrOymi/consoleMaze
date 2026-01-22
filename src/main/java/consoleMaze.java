@@ -21,36 +21,7 @@ public class consoleMaze {
                 System.out.print("Enter your move (w a s d): ");
                 String move = sc.nextLine();
                 if (move.equals("w") || move.equals("a") || move.equals("s") || move.equals("d")){
-                    switch (move){
-                        case "w":
-                            if (mazeInRealTime[coordinates[0] - 1][coordinates[1]].equals(" ") || mazeInRealTime[coordinates[0] - 1][coordinates[1]].equals("S") || mazeInRealTime[coordinates[0] - 1][coordinates[1]].equals("E")){
-                                coordinates[0] = coordinates[0] - 1;
-                            } else {
-                                throw new IllegalArgumentException("Illegal move");
-                            }
-                            break;
-                        case "a":
-                            if (mazeInRealTime[coordinates[0]][coordinates[1] - 1].equals(" ") || mazeInRealTime[coordinates[0]][coordinates[1] - 1].equals("S") || mazeInRealTime[coordinates[0]][coordinates[1] - 1].equals("E")){
-                                coordinates[1] = coordinates[1] - 1;
-                            } else {
-                                throw new IllegalArgumentException("Illegal move");
-                            }
-                            break;
-                        case "s":
-                            if (mazeInRealTime[coordinates[0] + 1][coordinates[1]].equals(" ") || mazeInRealTime[coordinates[0] + 1][coordinates[1]].equals("S") || mazeInRealTime[coordinates[0] + 1][coordinates[1]].equals("E")){
-                                coordinates[0] = coordinates[0] + 1;
-                            } else {
-                                throw new IllegalArgumentException("Illegal move");
-                            }
-                            break;
-                        case "d":
-                            if (mazeInRealTime[coordinates[0]][coordinates[1] + 1].equals(" ") || mazeInRealTime[coordinates[0]][coordinates[1] + 1].equals("S") || mazeInRealTime[coordinates[0]][coordinates[1] + 1].equals("E")){
-                                coordinates[1] = coordinates[1] + 1;
-                            } else {
-                                throw new IllegalArgumentException("Illegal move");
-                            }
-                            break;
-                    }
+                    move(move, mazeInRealTime, coordinates);
                 } else {
                     throw new IllegalArgumentException("Illegal move");
                 }
@@ -93,6 +64,39 @@ public class consoleMaze {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    static void move(String move, String[][] mazeInRealTime, int[] coordinates) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
+        switch (move){
+            case "w":
+                if (mazeInRealTime[coordinates[0] - 1][coordinates[1]].equals(" ") || mazeInRealTime[coordinates[0] - 1][coordinates[1]].equals("S") || mazeInRealTime[coordinates[0] - 1][coordinates[1]].equals("E")){
+                    coordinates[0] = coordinates[0] - 1;
+                } else {
+                    throw new IllegalArgumentException("Illegal move");
+                }
+                break;
+            case "a":
+                if (mazeInRealTime[coordinates[0]][coordinates[1] - 1].equals(" ") || mazeInRealTime[coordinates[0]][coordinates[1] - 1].equals("S") || mazeInRealTime[coordinates[0]][coordinates[1] - 1].equals("E")){
+                    coordinates[1] = coordinates[1] - 1;
+                } else {
+                    throw new IllegalArgumentException("Illegal move");
+                }
+                break;
+            case "s":
+                if (mazeInRealTime[coordinates[0] + 1][coordinates[1]].equals(" ") || mazeInRealTime[coordinates[0] + 1][coordinates[1]].equals("S") || mazeInRealTime[coordinates[0] + 1][coordinates[1]].equals("E")){
+                    coordinates[0] = coordinates[0] + 1;
+                } else {
+                    throw new IllegalArgumentException("Illegal move");
+                }
+                break;
+            case "d":
+                if (mazeInRealTime[coordinates[0]][coordinates[1] + 1].equals(" ") || mazeInRealTime[coordinates[0]][coordinates[1] + 1].equals("S") || mazeInRealTime[coordinates[0]][coordinates[1] + 1].equals("E")){
+                    coordinates[1] = coordinates[1] + 1;
+                } else {
+                    throw new IllegalArgumentException("Illegal move");
+                }
+                break;
         }
     }
 }
