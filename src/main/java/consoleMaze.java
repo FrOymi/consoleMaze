@@ -136,13 +136,13 @@ class Maze{
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
                 double randomDouble = Math.random();
-                if (i == 0) {
+                if (i == 0) { // если первая строка лабиринта, генерируем почву для всего лабиринта, раставляя стены так чтобы они не могли стаять друг возле друга
                     if (j == 0 || (randomDouble < 0.5)) {
                         maze[i][j] = " ";
                     } else if (randomDouble > 0.5) {
                         maze[i][j] = maze[i][j-1].equals(" ") ? "#" : " ";
                     }
-                } else if (j == 0 || j == maze[i].length - 1) {
+                } else if (j == 0 || j == maze[i].length - 1) { // если это первый или последний столбец лабиринта, не даем поставить стены в плотную друг с другом, чтобы избежать островков
                     if (randomDouble < 0.5) {
                         maze[i][j] = " ";
                     } else if (randomDouble > 0.5) {
@@ -152,14 +152,14 @@ class Maze{
                             maze[i][j] = maze[i-1][j].equals(" ") && i != maze[i].length - 1 ? "#" : " ";
                         }
                     }
-                } else {
-                    if (randomDouble < 0.5) {
+                } else { // основная генерация лабиринта
+                    if (randomDouble < 0.5) { // при генерации проходов стараемся избегать островков 2x2
                         if (i != maze.length - 1 && maze[i - 1][j + 1].equals(" ")) {
                             maze[i][j] = (maze[i][j-1].equals(" ") && maze[i-1][j-1].equals(" ") && maze[i-1][j].equals(" ")) ? "#" : " ";
                         } else {
                             maze[i][j] = " ";
                         }
-                    }  else if (randomDouble > 0.5) {
+                    }  else if (randomDouble > 0.5) { // при раставлении стен проверяем наличие выхода из пути, чтобы избежать случаев когда лабиринт становиться непроходимым
                         maze[i][j] = maze[i-1][j+1].equals(" ") && (maze[i][j-1].equals(" ") || maze[i-1][j-1].equals(" ") || maze[i-1][j].equals(" ")) ? "#" : " ";
                     }
                 }
